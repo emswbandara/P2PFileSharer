@@ -1,9 +1,6 @@
 package org.uomcse.cs4262;
 
 
-/**
- * Created by sathya on 12/26/16.
- */
 public class BootstrapClient {
 
     private String node_ip, node_port, username, bs_ip, bs_port;
@@ -26,7 +23,6 @@ public class BootstrapClient {
         bs_ip = config.getProperty(UDPProtocol.BOOTSTRAPSERVER_IP);
         bs_port = config.getProperty(UDPProtocol.BOOTSTRAPSERVER_PORT);
 
-        System.out.println(bs_port);
     }
 
     public String[] register(){
@@ -49,8 +45,8 @@ public class BootstrapClient {
         String message = MessageProcessor.createMessage(node_ip, node_port, username, UDPProtocol.UNREGISTER_COMMAND);
 
             String response = UDPClient.sendMessage(bs_ip, bs_port, message, true);
-                System.out.println("Sent Command :"+ message);
-                System.out.println("Received Response :" + response);
+                System.out.println("Sent Command: "+ message);
+                System.out.println("Received Response: " + response);
             return true;
 
 

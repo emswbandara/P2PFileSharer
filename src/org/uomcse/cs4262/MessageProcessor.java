@@ -2,9 +2,7 @@ package org.uomcse.cs4262;
 
 import java.util.Arrays;
 
-/**
- * Created by sathya on 12/26/16.
- */
+
 public class MessageProcessor {
 
 
@@ -24,7 +22,6 @@ public class MessageProcessor {
         String[] oldArray = response.split(" ");
         String code = oldArray[2].trim();
         int length = Integer.parseInt(code);
-        System.out.println(length);
 
         switch (length){
             case 0:
@@ -42,7 +39,18 @@ public class MessageProcessor {
             case 9996:
                 System.out.println("failed, can’t register. BS full. Status code: "+ length);
                 return null;
-            case 1|2: {
+            case 1: {
+                System.out.println("request is successful, 1 or 2 node contacts will be returned");
+                String[] peers = new String[length];
+                String[] newArray = Arrays.copyOfRange(oldArray, 3, oldArray.length);
+
+                for(int i=0; i<length; i++){
+                    peers[i] = newArray[i*2] + " " + newArray[i*2 + 1];
+                }
+
+                return peers;
+            }
+            case 2: {
                 System.out.println("request is successful, 1 or 2 node contacts will be returned");
                 String[] peers = new String[length];
                 String[] newArray = Arrays.copyOfRange(oldArray, 3, oldArray.length);

@@ -4,9 +4,7 @@ package org.uomcse.cs4262;
 import java.io.IOException;
 import java.net.*;
 
-/**
- * Created by sathya on 12/26/16.
- */
+
 public class UDPClient {
 
 
@@ -18,9 +16,9 @@ public class UDPClient {
         try {
             datagramSocket = new DatagramSocket();
             InetAddress ipaddress = InetAddress.getByName(ip);
-            int port = Integer.parseInt(portStr);
+            int port = Integer.parseInt(portStr.trim());
             byte[] sendData = new byte[1024];
-            byte[] receiveData = new byte[1024];
+            byte[] receiveData = new byte[65536];
             sendData = message.getBytes();
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, ipaddress, port);
             datagramSocket.send(sendPacket);
@@ -30,15 +28,12 @@ public class UDPClient {
                 response = new String(receivePacket.getData());
             }
 
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e){
-            e.printStackTrace();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         finally {
-            datagramSocket.close();
+            if(datagramSocket != null)
+                datagramSocket.close();
         }
 
         return response;

@@ -1,15 +1,15 @@
 package org.uomcse.cs4262;
 
-/**
- * Created by sathya on 12/27/16.
- */
+
 public class UDPProtocol {
 
     public static final String REGISTER_COMMAND = "REG";
     public static final String UNREGISTER_COMMAND = "UNREG";
     public static final String JOIN_COMMAND = "JOIN";
+    public static final String JOIN_OK_COMMAND = "JOINOK";
     public static final String LEAVE_COMMAND = "LEAVE";
     public static final String SEARCH_COMMAND = "SER";
+    public static final String SEARCH_OK_COMMAND = "SEROK";
 
     public static final String LOCAL_NODE_HOST = "node.host";
     public static final String LOCAL_NODE_PORT = "node.port";

@@ -1,12 +1,11 @@
 package org.uomcse.cs4262;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Created by sathya on 12/26/16.
- */
+
 public class Config {
 
     private static final String PROPERTY_FILE="/resources/config.properties";
@@ -44,6 +43,20 @@ public class Config {
         }
         else
             return null;
+
+    }
+
+    public static String getIteration(){
+        RefreshingProperties p = null;
+        try {
+            p = new RefreshingProperties(new File("resources/config.properties"));
+            String iteration = p.getProperty("node.iteration");
+            return iteration;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+
 
     }
 
